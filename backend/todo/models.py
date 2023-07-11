@@ -1,7 +1,8 @@
-from typing import Iterable, Optional
 from django.db import models
 from django.utils import timezone
-from django.db.models import Max
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Task(models.Model):
@@ -15,6 +16,7 @@ class Task(models.Model):
     description = models.TextField('Description', blank=True)
     done = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
         if self.__class__.objects.exists():

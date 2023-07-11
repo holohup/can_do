@@ -2,3 +2,4 @@ django>=4.2.3
 djangorestframework>=3.14.0
 pytest-django>=4.5.2
 python-dotenv>=1.0.0
+pytest_factoryboy>=2.5.1
