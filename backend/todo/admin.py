@@ -1,3 +1,17 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
+from todo.models import Task
 
-# Register your models here.
+admin.site.unregister(Group)
+
+
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'title',
+        'description',
+        'done',
+        'created_at',
+    )
+    list_editable = ('done',)
