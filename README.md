@@ -5,6 +5,15 @@ The main functionality is covered with tests, however, there still could be bugs
 
 Installation
 
+git clone https://github.com/holohup/can_do.git && cd can_do/backend
+
+1) 
+```
+docker build . -t can_do && docker run -d -p 8000:8000 --name can_do can_do && docker exec -it -u root $(docker ps -aqf "name=^can_do$") sh ./init.sh
+```
+
+Tests
+
 Usage
 
 If you still haven't done so, register a user using the django admin, or the new user registration endpoint: /api/auth/users/
@@ -30,16 +39,10 @@ Where the numbers are task id's and can be found in the task list, or task detai
 
 Fixtures come with a bunch of tasks and two users:
 admin / admin (an admin :)
+
+
 leo / shmleoleo (an ordinary user)
 
-
-endpoints:
-/api/
-/api/tasks/
- - new user registration
- - my info
- - create new jwt token (Bearer in headers)
- - refresh token
 
 Ways to impove the app:
 - Currently, there's no extra endpoint to mark a task as done (you should use patch on the whole item), probably it's a good idea to make one.
