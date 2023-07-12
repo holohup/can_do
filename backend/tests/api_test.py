@@ -1,10 +1,11 @@
+from itertools import permutations
+
 import pytest
 from django.urls import reverse
 from rest_framework import status
-from todo.models import User, Task
-from tests.factories import TaskFactory
-from itertools import permutations
 
+from tests.factories import TaskFactory
+from todo.models import Task, User
 
 REORDER_URL = reverse('tasks-reorder')
 

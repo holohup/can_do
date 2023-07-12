@@ -1,9 +1,10 @@
-from rest_framework.viewsets import ModelViewSet
-from todo.models import Task
-from api.serializers import TaskSerializer, ReorderSerializer
+from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.viewsets import ModelViewSet
+
+from api.serializers import ReorderSerializer, TaskSerializer
+from todo.models import Task
 
 
 class TaskViewSet(ModelViewSet):

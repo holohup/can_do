@@ -1,7 +1,8 @@
-from todo.models import User
 import pytest
-from tests.factories import TaskFactory
 from rest_framework.test import APIClient
+
+from tests.factories import TaskFactory
+from todo.models import User
 
 
 @pytest.fixture

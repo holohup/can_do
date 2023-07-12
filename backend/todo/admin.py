@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
+
 from todo.models import Task
 
 admin.site.unregister(Group)

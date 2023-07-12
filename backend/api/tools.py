@@ -1,4 +1,5 @@
 from typing import NamedTuple
+
 from rest_framework.exceptions import ValidationError
 
 

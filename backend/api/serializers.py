@@ -1,8 +1,9 @@
-from rest_framework import serializers
-from todo.models import Task
-from rest_framework.exceptions import ValidationError
-from api.tools import NewOrder, IdPosition
 from django.db import transaction
+from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
+
+from api.tools import IdPosition, NewOrder
+from todo.models import Task
 
 
 class TaskSerializer(serializers.ModelSerializer):
