@@ -9,6 +9,8 @@ admin.site.unregister(Group)
 class TaskAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
+        'author',
         'title',
         'description',
         'done',

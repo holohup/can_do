@@ -3,3 +3,5 @@ djangorestframework>=3.14.0
 pytest-django>=4.5.2
 python-dotenv>=1.0.0
 pytest_factoryboy>=2.5.1
+djoser>=2.2.0
+djangorestframework-simplejwt>=5.2.2
