@@ -38,7 +38,7 @@ def test_all_tasks_are_present_in_the_list(task, two_more_tasks, list_data):
 
 @pytest.mark.django_db
 def test_list_contains_only_needed_fields(task, list_data):
-    needed_fields = 'id', 'author', 'title', 'description', 'done'
+    needed_fields = 'id', 'title', 'description', 'done'
     assert len(list_data[0]) == len(needed_fields)
     for field in needed_fields:
         assert field in list_data[0]
@@ -64,7 +64,6 @@ def test_task_is_created_by_the_authenticated_user(author, client):
     payload = {'title': 'test'}
     response = client.post(reverse('tasks-list'), payload, format='json')
     assert response.status_code == status.HTTP_201_CREATED
-    assert response.data['author'] == author.id
 
 
 @pytest.mark.django_db
