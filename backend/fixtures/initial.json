@@ -1,0 +1,310 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$CMe4Q2tFD5yh7dYW1T0J48$shRCKOxVent4YNXYe+caftfs/Np3IUnVwAYtTsJzZ9A=",
+        "last_login": "2023-07-12T16:18:54.631Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-07-12T16:18:12.650Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$smM57aG0qKUCFbtiEgJDoF$HR3V+NeAJ2N/8se6KW9iEN5SNwxs7jZlTmbvFc5EmcQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "leo",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-07-12T16:19:23.255Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "todo.task",
+    "pk": 1,
+    "fields": {
+        "position": 1,
+        "title": "Buy bread",
+        "description": "500-600 grams, for hummus, prefferably pitas",
+        "done": false,
+        "created_at": "2023-07-12T19:20:42Z",
+        "author": [
+            "admin"
+        ]
+    }
+},
+{
+    "model": "todo.task",
+    "pk": 2,
+    "fields": {
+        "position": 2,
+        "title": "Take kids to the zoo",
+        "description": "They haven't been there for a while",
+        "done": true,
+        "created_at": "2023-07-12T19:24:22Z",
+        "author": [
+            "leo"
+        ]
+    }
+},
+{
+    "model": "todo.task",
+    "pk": 3,
+    "fields": {
+        "position": 3,
+        "title": "Buy some soy milk",
+        "description": "For my beloved one",
+        "done": false,
+        "created_at": "2023-07-12T19:25:40Z",
+        "author": [
+            "admin"
+        ]
+    }
+},
+{
+    "model": "todo.task",
+    "pk": 4,
+    "fields": {
+        "position": 4,
+        "title": "Add a cronjob",
+        "description": "The server needs a new cronjob!",
+        "done": false,
+        "created_at": "2023-07-12T19:26:03Z",
+        "author": [
+            "leo"
+        ]
+    }
+},
+{
+    "model": "todo.task",
+    "pk": 5,
+    "fields": {
+        "position": 5,
+        "title": "Amazon prime day is soon",
+        "description": "Check what's needed beforehand in order not to waste another day browsing",
+        "done": false,
+        "created_at": "2023-07-12T19:27:18Z",
+        "author": [
+            "leo"
+        ]
+    }
+},
+{
+    "model": "todo.task",
+    "pk": 6,
+    "fields": {
+        "position": 6,
+        "title": "Walk the dog",
+        "description": "Before I have no choice",
+        "done": true,
+        "created_at": "2023-07-12T19:28:31Z",
+        "author": [
+            "admin"
+        ]
+    }
+},
+{
+    "model": "todo.task",
+    "pk": 7,
+    "fields": {
+        "position": 7,
+        "title": "Quit smoking",
+        "description": "Probably next week",
+        "done": false,
+        "created_at": "2023-07-12T19:28:58Z",
+        "author": [
+            "admin"
+        ]
+    }
+},
+{
+    "model": "todo.task",
+    "pk": 8,
+    "fields": {
+        "position": 8,
+        "title": "Read another book",
+        "description": "On my 50 books a year challenge",
+        "done": false,
+        "created_at": "2023-07-12T19:29:19Z",
+        "author": [
+            "leo"
+        ]
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2023-07-12T16:19:23.357Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "2",
+        "object_repr": "leo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2023-07-12T19:21:26.628Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "todo",
+            "task"
+        ],
+        "object_id": "1",
+        "object_repr": "1 - Buy bread",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2023-07-12T19:24:50.174Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "todo",
+            "task"
+        ],
+        "object_id": "2",
+        "object_repr": "2 - Take kids to the zoo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2023-07-12T19:25:59.866Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "todo",
+            "task"
+        ],
+        "object_id": "3",
+        "object_repr": "3 - Buy some soy milk",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2023-07-12T19:27:15.954Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "todo",
+            "task"
+        ],
+        "object_id": "4",
+        "object_repr": "4 - Add a cronjob",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2023-07-12T19:28:19.714Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "todo",
+            "task"
+        ],
+        "object_id": "5",
+        "object_repr": "5 - Amazon prime day is soon",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2023-07-12T19:28:48.035Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "todo",
+            "task"
+        ],
+        "object_id": "6",
+        "object_repr": "6 - Walk the dog",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2023-07-12T19:29:13.821Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "todo",
+            "task"
+        ],
+        "object_id": "7",
+        "object_repr": "7 - Quit smoking",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2023-07-12T19:29:41.533Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "todo",
+            "task"
+        ],
+        "object_id": "8",
+        "object_repr": "8 - Read another book",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}
+]

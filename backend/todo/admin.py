@@ -18,4 +18,6 @@ class TaskAdmin(admin.ModelAdmin):
         'done',
         'created_at',
     )
+    list_display_links = ('id', 'title')
     list_editable = ('done',)
+    readonly_fields = ('position',)
