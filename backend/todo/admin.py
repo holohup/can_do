@@ -7,6 +7,7 @@ admin.site.unregister(Group)
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
+    """Admin panel for the tasks."""
 
     list_display = (
         'id',

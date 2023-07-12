@@ -7,16 +7,25 @@ from rest_framework import status
 
 
 class TaskViewSet(ModelViewSet):
+    """A viewset for tasks, including the reordering endpoint."""
+
     serializer_class = TaskSerializer
     http_method_names = ('get', 'post', 'patch')
 
     @action(('patch',), detail=False)
     def reorder(self, request):
-        context = {'request': request}
+        context = {
+            'request': request,
+            'tasks': self.get_queryset()
+        }
         serializer = ReorderSerializer(
-            context=context, data=request.data, partial=True)
+            instance=self.get_queryset(),
+            data=request.data,
+            partial=True,
+            context=context
+        )
         if serializer.is_valid():
-            serializer.save()
+            serializer.update()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

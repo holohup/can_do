@@ -30,3 +30,10 @@ def test_new_task_position_doesnt_get_inserted_in_a_wrong_position(
     second_task.delete()
     fourth_task = Task.objects.create(author=author)
     assert fourth_task.position == task.position + 3
+
+
+@pytest.mark.django_db
+def test_task_save_does_not_increment_position(task):
+    old_pos = task.position
+    task.save()
+    assert task.position == old_pos
