@@ -42,9 +42,10 @@ python manage.py createsuperuser
 
 ### Usage
 
-The Django admin panel is located at http://127.0.0.1:8000/admin/. The preloaded fixtures provide two already registered users:
+The Django admin panel is located at http://127.0.0.1:8000/admin/. The preloaded fixtures contain two already registered users:
 
 **admin** / **admin** (an admin :)
+
 **leo** / **shmleoleo** (an ordinary user)
 
 If you have skipped the fixture preloading, create an admin and a user of your choice using the Django admin, or the new user registration endpoint: http://127.0.0.1:8000/api/auth/users/. It requires a simple JSON:
