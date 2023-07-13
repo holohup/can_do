@@ -44,7 +44,7 @@ git clone https://github.com/holohup/can_do.git && cd can_do/backend
 
   
 
-After that, there're two options
+After that, there're two options:
 
   
 
@@ -101,7 +101,7 @@ If you have skipped the fixture preloading, create and admin and a user of your 
     "password": "shmalexei"
 }
 ```
-If everythin went ok and the password was not too short and didn't look at all like the username, you'll get the user registration confirmation:
+If everything went **OK** and the password was not too short and didn't look at all like the username, you'll get the user registration confirmation:
 ```json
 {
     "email": "",
@@ -109,53 +109,62 @@ If everythin went ok and the password was not too short and didn't look at all l
     "id": 3
 }
 ```
-  
+You would also need a JWT Token. Send the same username/password JSON combo POST request to http://127.0.0.1:8000/api/auth/jwt/create/ and you'll receive a response that looks similar to:
+```json
+{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4OTMxNzczNCwiaWF0IjoxNjg5MjMxMzM0LCJqdGkiOiI4ZDVmYTAxZTc3OGI0Yjc1YmYxYjY3MjMwYzZlMTEzZiIsInVzZXJfaWQiOjN9.eFH82eZvzNtbBUpKaXAoXltdFb3w_jOcVdU7U3rXbhc",
+    "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxODIzMzM0LCJpYXQiOjE2ODkyMzEzMzQsImp0aSI6IjczMzkwOTJhZDdlNDRmYWY5ZDczYzRjZWJmZGMwN2EzIiwidXNlcl9pZCI6M30.koJbtDboe8fQsqQNgY_LyHZsi4fqJ2cWdwRHBvAu2Us"
+}
+```
+Now copy the "access" key to your favorite program (I use **Postman** and highly recommend it) to use it (Bearer in the headers) and enjoy the API.
 
-It requires a simple json with username and password.
 
-  
+### Endpoints
 
-After that, get a token at /api/auth/jwt/create/ with the credentials you have just provided. Set up your frontend or program to use it (Bearer) and enjoy the API.
+#### Create a new todo item
 
-  
+POST to http://127.0.0.1:8000/api/tasks/
+```json
+{
+    "title": "Feed the dog",
+    "description": "He likes chicken sausages",
+    "done": false
+}
+```
+Only the title field is required, but you can provide extra details in the other fields if you want. The response will contain the new task id.
 
-  
+#### Modify an existing todo item.
 
-Endpoints
+Use the id from the previous step to modify any of the fields, send a PATCH request with modified JSON from the previous step to http://127.0.0.1:8000/api/tasks/{task_id}
 
-  
+#### Get a list of your tasks.
 
-  
+Since you're authorized using the JWT token, you can get a list of your tasks. Send a GET request to http://127.0.0.1:8000/api/tasks/
 
-- Get a list of your tasks. GET to /api/tasks/
+You can also get all of your task id's from that list.
 
-  
+#### Get your user info.
 
-- Create a new todo item. POST to /api/tasks/
+Simple information about the authorized user (according to the token) - email, username and id.
+Send a GET request to http://127.0.0.1:8000/api/auth/users/me/
 
-  
+#### Refresh your token
 
-- Modify an existing todo item. PATCH to /api/tasks/{task id}
+The current token TTL is set to 30 days. If you ever feel the need to refresh it, you need to send a POST request with JSON that looks like this:
+```json
+{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4OTMxNzczNCwiaWF0IjoxNjg5MjMxMzM0LCJqdGkiOiI4ZDVmYTAxZTc3OGI0Yjc1YmYxYjY3MjMwYzZlMTEzZiIsInVzZXJfaWQiOjN9.eFH82eZvzNtbBUpKaXAoXltdFb3w_jOcVdU7U3rXbhc"
+}
+```
+Where "refresh" is the key you received when aquired the token. The endpoint is: http://127.0.0.1:8000/api/auth/jwt/refresh/
 
-  
+Then you would need to use the new token provided by the system.
 
-- Get your info (according to the token) - email, username and id: /api/auth/users/me/
-
-  
-
-- Refresh your token (current TTL is 30 days): /api/auth/jwt/refresh/
-
-  
-
-  
 
 #### Reordering
 
-  
+Here comes the tricky part. There's a special endpoint for reordering items. It accepts a simple JSON with a list of id's in the new order, and reorders the todo tasks accordingly. Let's say you've got task id's **1, 2 and 3** (you can get those from the task list endpoint). If you reorder them, once you get a new task list, they'll come in the new order. To reorder, send PATCH request to http://127.0.0.1:8000/api/tasks/reorder/ containg a simple JSON:
 
-There's a special endpoint for reordering items. It accepts a simple JSON with a list of id's in them and reorders your tasks in the corresponding order. /api/tasks/reorder/ . The JSON should look like:
-
-  
 
 ```json
 
@@ -163,72 +172,37 @@ There's a special endpoint for reordering items. It accepts a simple JSON with a
 
 {
 
-"new_order": [1, 5, 7, 3, 2]
+"new_order": [3, 1, 2]
 
 }
 
 ```
+The response either provides the new order, or reports of an error (e.g. you tried to include other user's post, or didn't include some of your posts in the new order)
 
-  
+```json
+{
+    "new_order": [
+        3,
+        1,
+        2,
+    ]
+}
+```
 
-Where the numbers are task id's and can be found in the task list, or task details.
+### Final words
 
-  
-
-Fixtures come with a bunch of tasks and two users:
-
-  
-
-
-
-
-  
-
-  
-
-Final words
-
-  
-
-  
-
-Tests
-
-  
-
-  
+#### Tests
 
 Launch the command
 
-  
-
 ```
-
-  
-
 pytest
-
-  
-
 ```
-
-  
-
 from the backend directory.
 
-  
-  
-
-Ways to impove the app:
-
-  
+#### Ways to impove the app:
 
 - Currently, there's no extra endpoint to mark a task as done (you should use patch on the whole item), probably it's a good idea to make one.
-
-  
-
 - At this moment you cannot delete a task (the method is explicittly prohibited), however, this feature should be very useful for tasks that stop being needed.
-
-  
-
 - Switch to a more sequire way to acquire tokens, this would need an approval from a frontend guys!
+- Pagination / filtering to the tasks lists once their number grows.
