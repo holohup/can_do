@@ -1,7 +1,7 @@
 ## Can Do
-### ToDo backend app for Cannabis Magazine IL, a home assignement
+### ToDo backend app for Cannabis Magazine IL, a home assignment
 
-It's a backend app, it provides the API for a TODO frontend. Currently, there's no frontend available. You can use **Postman** or any other program of your choice. It's developed using the TDD methodology, therefore the main functionality is covered with tests, however, there still could be bugs. The API connects to an SQLite database, since we're currently not planning any sorts of high loads, however, a switch to PostgreSQL can be done easily if needed. This app provides segregated TODO-lists for each user. The authentication is done via a JWT-token (Bearer in headers). There API has endpoint to register new users, receive a token and to refresh it, every other action requires a valid token.
+It's a backend app, it provides the API for a TODO frontend. Currently, there's no front end available. You can use **Postman** or any other program of your choice. It's developed using the TDD methodology, therefore the main functionality is covered with tests, however, there still could be bugs. The API connects to an SQLite database since we're currently not planning any sort of high loads, however, a switch to PostgreSQL can be done easily if needed. This app provides segregated TODO lists for each user. The authentication is done via a JWT token (Bearer in headers). The API has an endpoint to register new users, receive a token, and refresh it, every other action requires a valid token.
 
 ### Installation
 
@@ -9,7 +9,7 @@ There're *three ways* to get to know this project better.
 
 #### 1) Take a look
 
-It's latest version is already running on an AWS server by the URL http://ondeletecascade.ru:8000/api/ and every action can be performed there. The instance will keep running for some time, but no guarantees on how long it will last.
+Its latest version is already running on an AWS server by the URL http://ondeletecascade.ru:8000/api/ and every action can be performed there. The instance will keep running for some time, but no guarantees on how long it will last.
 
 You can also copy the project and run it on your PC or server:
 
@@ -38,7 +38,7 @@ python3.11 -m venv venv && source venv/bin/activate && pip install -r requiremen
 python manage.py createsuperuser
 ```
 
-**That's it!** After either step, the **Can Do API** will become available by the address http://127.0.0.1:8000/api/. From here and on, the API links will be provided to this address, however, feel free to use the *ondeletecascade*.ru version.
+**That's it!** After either step, the **Can Do API** will become available by the address http://127.0.0.1:8000/api/. From here on, the API links will be provided to this address, however, feel free to use the *ondeletecascade*.ru version.
 
 ### Usage
 
@@ -47,7 +47,7 @@ The Django admin panel is located at http://127.0.0.1:8000/admin/. The preloaded
 **admin** / **admin** (an admin :)
 **leo** / **shmleoleo** (an ordinary user)
 
-If you have skipped the fixture preloading, create and admin and a user of your choice using the django admin, or the new user registration endpoint: http://127.0.0.1:8000/api/auth/users/. It requires a simple JSON:
+If you have skipped the fixture preloading, create an admin and a user of your choice using the Django admin, or the new user registration endpoint: http://127.0.0.1:8000/api/auth/users/. It requires a simple JSON:
 ```json
 {
     "username": "alexey",
@@ -86,19 +86,19 @@ POST to http://127.0.0.1:8000/api/tasks/
 ```
 Only the title field is required, but you can provide extra details in the other fields if you want. The response will contain the new task id.
 
-#### Modify an existing todo item.
+#### Modify an existing to-do item.
 
-Use the id from the previous step to modify any of the fields, send a PATCH request with modified JSON from the previous step to http://127.0.0.1:8000/api/tasks/{task_id}
+Use the id from the previous step to modify any of the fields, and send a PATCH request with modified JSON from the previous step to http://127.0.0.1:8000/api/tasks/{task_id}
 
 #### Get a list of your tasks.
 
-Since you're authorized using the JWT token, you can get a list of your tasks. Send a GET request to http://127.0.0.1:8000/api/tasks/
+Since you're authorized via the JWT token, you can get a list of your tasks. Send a GET request to http://127.0.0.1:8000/api/tasks/
 
 You can also get all of your task id's from that list.
 
 #### Get your user info.
 
-Simple information about the authorized user (according to the token) - email, username and id.
+Simple information about the authorized user (according to the token) - email, username, and id.
 Send a GET request to http://127.0.0.1:8000/api/auth/users/me/
 
 #### Refresh your token
@@ -109,22 +109,22 @@ The current token TTL is set to 30 days. If you ever feel the need to refresh it
     "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4OTMxNzczNCwiaWF0IjoxNjg5MjMxMzM0LCJqdGkiOiI4ZDVmYTAxZTc3OGI0Yjc1YmYxYjY3MjMwYzZlMTEzZiIsInVzZXJfaWQiOjN9.eFH82eZvzNtbBUpKaXAoXltdFb3w_jOcVdU7U3rXbhc"
 }
 ```
-Where "refresh" is the key you received when aquired the token. The endpoint is: http://127.0.0.1:8000/api/auth/jwt/refresh/
+Where "refresh" is the key you received when acquired the token. The endpoint is: http://127.0.0.1:8000/api/auth/jwt/refresh/
 
 Then you would need to use the new token provided by the system.
 
 
 #### Reordering
 
-Here comes the tricky part. There's a special endpoint for reordering items. It accepts a simple JSON with a list of id's in the new order, and reorders the todo tasks accordingly. Let's say you've got task id's **1, 2 and 3** (you can get those from the task list endpoint). If you reorder them, once you get a new task list, they'll come in the new order. To reorder, send PATCH request to http://127.0.0.1:8000/api/tasks/reorder/ containing a simple JSON:
+Here comes the tricky part. There's a special endpoint for reordering items. It accepts a simple JSON with a list of IDs in the new order and reorders the to-do tasks accordingly. Let's say you've got task IDs **1, 2, and 3** (you can get those from the task list endpoint). If you reorder them, they'll come in a new order once you get a new task list. To reorder, send a PATCH request to http://127.0.0.1:8000/api/tasks/reorder/ containing a simple JSON:
 
 
 ```json
 {
-"new_order": [3, 1, 2]
+    "new_order": [3, 1, 2]
 }
 ```
-The response either provides the new order, or reports of an error (e.g. you tried to include other user's post, or didn't include some of your posts in the new order)
+The response either provides the new order, or reports an error (e.g. you tried to include another user's post, or didn't include some of your posts in the new order)
 
 ```json
 {
@@ -147,9 +147,9 @@ pytest
 ```
 from the backend directory.
 
-#### Ways to impove the app:
+#### Ways to improve the app:
 
-- Currently, there's no extra endpoint to mark a task as done (you should use patch on the whole item), probably it's a good idea to make one.
-- At this moment you cannot delete a task (the method is explicittly prohibited), however, this feature should be very useful for tasks that stop being needed.
-- Switch to a more sequire way to acquire tokens, this would need an approval from a frontend guys!
-- Pagination / filtering to the tasks lists once their number grows.
+- Currently, there's no extra endpoint to mark a task as done (you should use a PATCH request on an item), probably it's a good idea to make one.
+- At this moment you cannot delete a task (the method is explicitly prohibited), however, this feature should be very useful for tasks that stop being needed.
+- Switch to a more secure way to acquire tokens, this would need approval from frontend guys!
+- Pagination/filtering for the tasks lists once their number grows.
