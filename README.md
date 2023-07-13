@@ -38,7 +38,7 @@ python3.11 -m venv venv && source venv/bin/activate && pip install -r requiremen
 python manage.py createsuperuser
 ```
 
-**That's it!** After either step, the **Can Do API** will become available by the address http://127.0.0.1:8000/api/. From here and on, the API links will be provided to this address.
+**That's it!** After either step, the **Can Do API** will become available by the address http://127.0.0.1:8000/api/. From here and on, the API links will be provided to this address, however, feel free to use the *ondeletecascade*.ru version.
 
 ### Usage
 
@@ -69,7 +69,7 @@ You would also need a JWT Token. Send the same username/password JSON combo POST
     "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxODIzMzM0LCJpYXQiOjE2ODkyMzEzMzQsImp0aSI6IjczMzkwOTJhZDdlNDRmYWY5ZDczYzRjZWJmZGMwN2EzIiwidXNlcl9pZCI6M30.koJbtDboe8fQsqQNgY_LyHZsi4fqJ2cWdwRHBvAu2Us"
 }
 ```
-Now copy the "access" key to your favorite program (I use **Postman** and highly recommend it) to use it (Bearer in the headers) and enjoy the API.
+Now copy the "access" key to your favorite program (I use **Postman** and highly recommend it) to use it (**Bearer** in the headers) and enjoy the API.
 
 
 ### Endpoints
@@ -116,19 +116,13 @@ Then you would need to use the new token provided by the system.
 
 #### Reordering
 
-Here comes the tricky part. There's a special endpoint for reordering items. It accepts a simple JSON with a list of id's in the new order, and reorders the todo tasks accordingly. Let's say you've got task id's **1, 2 and 3** (you can get those from the task list endpoint). If you reorder them, once you get a new task list, they'll come in the new order. To reorder, send PATCH request to http://127.0.0.1:8000/api/tasks/reorder/ containg a simple JSON:
+Here comes the tricky part. There's a special endpoint for reordering items. It accepts a simple JSON with a list of id's in the new order, and reorders the todo tasks accordingly. Let's say you've got task id's **1, 2 and 3** (you can get those from the task list endpoint). If you reorder them, once you get a new task list, they'll come in the new order. To reorder, send PATCH request to http://127.0.0.1:8000/api/tasks/reorder/ containing a simple JSON:
 
 
 ```json
-
-  
-
 {
-
 "new_order": [3, 1, 2]
-
 }
-
 ```
 The response either provides the new order, or reports of an error (e.g. you tried to include other user's post, or didn't include some of your posts in the new order)
 
